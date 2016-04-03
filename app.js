@@ -4,6 +4,8 @@
 
 import React from 'react';
 import Section from './Section';
+import Clock from './Clock';
+
 class App extends React.Component {
 
     render() {
@@ -13,7 +15,10 @@ class App extends React.Component {
         };
 
         return ( 
-            <div>{sections}</div>
+            <div>
+                <div>{sections}</div>
+                <Clock/>
+            </div>
         );
     }
 };
