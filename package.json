@@ -1,0 +1,19 @@
+{
+  "name": "startpage_react",
+  "version": "0.0.1",
+  "description": "react implentation of startpage.rwrt https://github.com/crshd/startpage.rwrt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/IdrilFirebird/startpage_react.git"
+  },
+  "author": "SEBASTIAN PROKESCH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IdrilFirebird/startpage_react/issues"
+  },
+  "homepage": "https://github.com/IdrilFirebird/startpage_react#readme"
+}
