@@ -10,6 +10,6 @@ import App from './App';
 
 ReactDOM.render(
     // <App Settings = Settings/>,
-    React.createElement(App, Settings),
+    React.createElement(App, Props),
     document.getElementById('container')
 );
