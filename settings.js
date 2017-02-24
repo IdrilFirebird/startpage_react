@@ -10,23 +10,15 @@ var Sections = {
                         ["http://zockworkorange.de","Zockwork"]],
             "Develop":[["http://github.com", 'Github'],
                         ["http://cb.vu/unixtoolbox.xhtml", "UnixToolbox"],
-                        ["http://developers.apple.com", "Apple Dev"]]
-    
+                        ["http://developers.apple.com", "Apple Dev"]],
+            "Stuff": [["http://reddit.com", "Redit"],
+                        ["http://9gag.com", "9GAG", "9gag"]],
+            "Shoping": [["http://amazon.de", "Amazon", "a"],
+                        ["http://amazon.co.uk", "Amazon UK"],
+                        ["http://humblebundle.com", "Humble Bundle"],
+                        ["http://oreilly.com", "oReilly"],
+                        ["http://enjoyyourcamera.com", "Enjoy Your Camera"]]
+
 };
 
-var shortcuts = {};
-
-(function() {
-    for (section in Sections) {
-        
-        for (link in Sections[section]) {
-            if (Sections[section][link][2]) {
-                shortcuts[Sections[section][link][2]] = Sections[section][link][0];    
-            }   
-        }
-        
-    }
-    return shortcuts;
-})();
-
-var Props = {Sections, shortcuts}
+var Props = {Sections}

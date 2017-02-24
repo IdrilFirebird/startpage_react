@@ -5,49 +5,48 @@
 import React from 'react';
 import Section from './Section';
 import Clock from './Clock';
+import SelectSearch from 'react-select-search';
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.typed = ''
-        this.shortcutArray = Object.keys(this.props.shortcuts)
-        this.timeoutID = undefined
+        this.links = (this.sectionsToLinksConvert(props.Sections))
     }
 
+    sectionsToLinksConvert(sections) {
+        var links = [];
+        for (section in sections) {
+            for (link in sections[section]) {
+                links.push({name:sections[section][link][1], value:sections[section][link][0], section:section})
+            }
+        }
+        return links    
+    }
     
 
-    hasSubstring(element) {
-        if(this.typed==element) {
-            window.location.replace(this.props.shortcuts[this.typed]);
-        }
-
+    logToConsole(value, state, props) {
+        console.log("logged", value["value"], value, state, props)
     }
 
-    componentWillMount() {
-        window.addEventListener("keypress", this.shortcutDetection.bind(this))     
+    onSearchChangeOpenSite(value) {
+        window.location.assign(value["value"]);
     }
 
-    shortcutDetection(e){
-        var ekey = e.charCode
-        this.typed = this.typed + String.fromCharCode(ekey);
-
-        this.delayedSiteOpen();
-
+    componentDidMount() {
+        window.addEventListener("keypress", this.setFocusOnSearch)  
     }
 
-    delayedSiteOpen(){
-        window.clearTimeout(this.timeoutID);
-        this.timeoutID = window.setTimeout(this.openSite.bind(this), 1000);
-    }
-
-    openSite() {
-        this.shortcutArray.some(this.hasSubstring.bind(this))
-        this.typed = ''; // Clean typed, so that we can watch for the next keybinding
+    setFocusOnSearch(event) {        
+        document.getElementsByClassName("select-search-box")[0].classList.add("select-search-box--focus")
+        document.getElementsByClassName("select-search-box__search")[0].focus()
     }
 
     render() {
         var sections = [];
+
+
+
         for (var section in this.props.Sections) {
             sections.push(<Section key={section} name={section} links={this.props.Sections[section]}/>);
         };
@@ -55,6 +54,7 @@ class App extends React.Component {
         return ( 
             <div>
                 <div>{sections}</div>
+                <SelectSearch options={this.links} value="" name="language" placeholder="Choose a website" onChange={this.onSearchChangeOpenSite} />
                 <Clock/>
             </div>
         );
